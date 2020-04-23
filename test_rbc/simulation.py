@@ -51,7 +51,7 @@ problem.add_bc("right(b) = 0")
 problem.add_bc("right(u) = 0")
 problem.add_bc("right(v) = 0")
 problem.add_bc("right(w) = 0", condition="(nx != 0) or (ny != 0)")
-problem.add_bc("integ_z(p) = 0", condition="(nx == 0) and (ny == 0)")
+problem.add_bc("right(p) = 0", condition="(nx == 0) and (ny == 0)")
 towel.write_comm_memory()
 
 # Build solver
