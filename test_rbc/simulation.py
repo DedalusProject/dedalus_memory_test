@@ -29,7 +29,7 @@ domain = de.Domain([x_basis, y_basis, z_basis], grid_dtype=np.float64, mesh=mesh
 towel.write_comm_memory()
 
 # 3D Boussinesq
-problem = de.IVP(domain, variables=['p','b','u','v','w','bz','uz','vz','wz'], ncc_cutoff=0, max_ncc_terms=max_ncc_terms)
+problem = de.IVP(domain, variables=['p','b','u','v','w','bz','uz','vz','wz'], ncc_cutoff=0, max_ncc_terms=max_ncc_terms, entry_cutoff=entry_cutoff)
 problem.parameters['P0'] = (Rayleigh * Prandtl)**(-1/2)
 problem.parameters['R0'] = (Rayleigh / Prandtl)**(-1/2)
 problem.substitutions['P'] = "P0*exp(-z)"
