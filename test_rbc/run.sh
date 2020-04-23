@@ -1,15 +1,14 @@
 
-cd test1
-mpiexec python3 ../simulation.py
-python3 ../plot_memory.py memory.txt --output=memory1.pdf
+alias mpi_command="mpiexec"
 
-cd ../test2
-mpiexec python3 ../simulation.py
-python3 ../plot_memory.py memory.txt --output=memory2.pdf
+for testdir in ./test*/
+do
+    cd $testdir
+    mpi_command python3 ../simulation.py
+    python3 ../plot_memory.py memory.txt --output=memory_$(basename $testdir).pdf
+    cd ..
+done
 
-cd ../test3
-mpiexec python3 ../simulation.py
-python3 ../plot_memory.py memory.txt --output=memory3.pdf
-
-cd ..
-\cp -f */memory*.pdf .
+rm -rf plots
+mkdir plots
+cp -f test*/memory*.pdf plots
